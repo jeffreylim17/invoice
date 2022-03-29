@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+
+        stage('Checkout Codebase') {
+            steps {
+            checkout scm: [$class: 'GitSCM',
+            userRemoteConfigs: [[url: 'git@github.com:jeffreylim17/invoice.git']]]
+
+            }
+        }
+        stage('Build') {
+            steps {
+               mvn clean package
+
+            }
+        }
+        stage('Test') {
+            steps {
+                mvn clean install
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo Done!'
+            }
+        }
+    }
+}

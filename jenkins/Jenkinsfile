@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout Codebase') {
             steps {
             checkout scm: [$class: 'GitSCM',
-            userRemoteConfigs: [[url: 'git@github.com:jeffreylim17/invoice.git']]]
+             userRemoteConfigs: [[credentialsId: 'secret',url: 'git@github.com:jeffreylim17/invoice.git']]]
 
             }
         }
